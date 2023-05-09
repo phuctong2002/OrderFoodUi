@@ -1,24 +1,56 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { publicPath, privatePath, adminPath } from "./router";
+import axios from "axios";
+import Auth from "./components/Auth";
+
+axios.defaults.baseURL = process.env.REACT_APP_SERVER;
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Routes>
+          {publicPath.map((route, index) => {
+            const Page = route.component;
+            const Layout = route.layout;
+            return <Route key={index} path={route.path} element={
+              <Layout>
+                <Page/>
+              </Layout>
+            } />;
+          })}
+          <Route element={<Auth/>}>
+            {
+              privatePath.map( (route, index)=>{
+                const Page = route.component;
+                const Layout = route.layout;
+                return <Route key={index} path={route.path} element={
+                  <Layout>
+                    <Page/>
+                  </Layout>
+                }/>
+              })
+            }
+            {
+              adminPath.map( (route, index)=>{
+                const Page = route.component;
+                const Layout = route.layout;
+                const SubLayout = route.subLayout;
+                return <Route key={index} path={route.path} element={
+                  <Layout>
+                    <SubLayout>
+                      <Page/>
+                    </SubLayout>
+                  </Layout>
+                }/>
+              })
+            }
+          </Route>
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
