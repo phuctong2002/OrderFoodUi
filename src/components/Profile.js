@@ -15,7 +15,7 @@ import {
   TreeSelect,
   Image,
 } from "antd";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAppContext } from "../context/appContext";
 const props = {
   name: "file",
@@ -45,8 +45,10 @@ const normFile = (e) => {
 };
 
 const Profile = () => {
+  const [form] = Form.useForm();
   const [componentDisabled, setComponentDisabled] = useState(true);
   const { firstName, lastName, phone, email, address } = useAppContext();
+  console.log(firstName, lastName, phone, email, address);
   const [command, setCommand] = useState("Edit Profile");
   const handle = () => {
     if (componentDisabled) {
@@ -54,19 +56,21 @@ const Profile = () => {
       setComponentDisabled(false);
     }
   };
+  useEffect(() => {
+    form.setFieldValue({
+      firstName: firstName,
+      lastName: lastName,
+      address: address,
+      phone: phone,
+      email: email,
+    });
+  }, []);
   return (
     <div className="pt-[80px] w-[100%] h-[calc(100%_-_80px)] bg-[#eeeeee]">
-      {/* <div className="bg-[#ffff] mx-[20px] px-[20px] rounded-[10px]">
-        <p className="text-[30px] m-[0] my-[20px] text-left">Home / Profile</p>
-      </div> */}
       <div className="w-[100%]  flex items-center justify-center">
         <div className="bg-[#ffff] h-[400px] flex items-center  w-[300px] rounded-[20px] mr-[20px]">
-          <Image
-            
-            // className="w-[150px] h-[180px] mt-[20px] rounded-t-[60px] rounded-b-[60px] mr-[auto] ml-[auto]"
-            src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
-          />
-          <h1 className="text-[28px]">{firstName + lastName}</h1>
+          <Image src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png" />
+          {/* <h1 className="text-[28px]">{firstName + lastName}</h1> */}
           {/* {edit ? (
             <Upload {...props}>
               <Button icon={<UploadOutlined />}>Upload</Button>
@@ -88,18 +92,24 @@ const Profile = () => {
               maxWidth: 600,
             }}
           >
-            <Form.Item label="First Name">
+            <Form.Item name="firstName" label="First Name">
               <Input />
             </Form.Item>
-            <Form.Item label="Last Name">
+            <Form.Item label="Last Name" name="lastName">
               <Input />
             </Form.Item>
-            <Form.Item label="Address">
+            <Form.Item label="Address" name="address">
               <Input />
             </Form.Item>
-            <Form.Item label="Birth">
+            <Form.Item label="Phone" name="phone">
+              <Input />
+            </Form.Item>
+            <Form.Item label="Email" name="email">
+              <Input />
+            </Form.Item>
+            {/* <Form.Item label="Birth">
               <DatePicker className="w-[100%]" />
-            </Form.Item>
+            </Form.Item> */}
           </Form>
         </div>
       </div>

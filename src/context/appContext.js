@@ -1,4 +1,4 @@
-import React, { useReducer, useContext } from "react";
+import React, { useReducer, useContext, useEffect } from "react";
 import axios from "axios";
 import reducer from "./reducer";
 import {
@@ -86,7 +86,7 @@ const AppProvider = ({ children }) => {
 
   const setUser = ( currentUser)=>{
     localStorage.setItem("token", currentUser.token);
-    localStorage.setItem("user", currentUser.email);
+    // localStorage.setItem("user", currentUser.email);
     dispatch({
       type: SET_USER,
       payload: currentUser,
@@ -106,7 +106,29 @@ const AppProvider = ({ children }) => {
       payload: item,
     })
   }
-
+  useEffect( ()=>{
+    console.log("gia tri cua token : ", localStorage.getItem("token"));
+    const token = localStorage.getItem("token");
+    const getData = async()=>{
+      const res = await axios.get("/api/v1/user/", {
+        headers: {
+          Authorization : "Bearer " + localStorage.getItem("token")
+        }
+      })
+      return res.data
+    }
+    if( localStorage.getItem("token")){
+      console.log("sdkfaskjdhfsjdfhj");
+      getData()
+        .then( res => {
+          console.log(res.data);
+          // set user in here nhe  anh em
+          const data = {...res.data, token: localStorage.getItem("token")}
+          setUser(data);
+        })
+        
+    }
+  },[dispatch]);
   return (
     <AppContext.Provider
       value={{
