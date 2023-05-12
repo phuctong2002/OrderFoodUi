@@ -118,12 +118,6 @@ const Home = () => {
                   {
                     cart.map((item, index)=> <ItemCart key={index} item={item}/>)
                   }
-                  {/* <ItemCart />
-                  <ItemCart />
-                  <ItemCart />
-                  <ItemCart />
-                  <ItemCart />
-                  <ItemCart /> */}
                 </div>
                 <Button
                   type="primary"

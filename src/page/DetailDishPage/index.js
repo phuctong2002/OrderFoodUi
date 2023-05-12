@@ -5,8 +5,9 @@ import {
   HeartOutlined,
   SearchOutlined,
   SendOutlined,
+  DotChartOutlined,
 } from "@ant-design/icons";
-import { Input } from "antd";
+import { Input, Divider, Form, Radio, Skeleton, Space, Switch } from "antd";
 import Comment from "../../components/Comment";
 import style from "./../../assets/css/home.module.css";
 import { useEffect, useState } from "react";
@@ -25,6 +26,7 @@ import { db } from "../../firebase/config";
 import { useAppContext } from "../../context/appContext";
 
 const DetailDish = () => {
+  const [active, setActive] = useState(true);
   const { lastName, firstName, addItemToCart } = useAppContext();
   const { dishId } = useParams();
   const [detail, setDetail] = useState({});
@@ -32,10 +34,10 @@ const DetailDish = () => {
   const onChangeFunc = (e) => {
     // console.log(e.target.value);
   };
-  const addItem = ()=>{
+  const addItem = () => {
     addItemToCart(detail);
-  }
-  
+  };
+
   const onPressEnter = async (e) => {
     console.log(e.target.value);
     /**write data into database */
@@ -76,7 +78,16 @@ const DetailDish = () => {
         className={`w-[900px] min-h-[100%] flex flex-col overflow-auto items-center ${style.nonescroll}`}
       >
         <div className="detail h-[320px] w-[660px] mt-[20px] flex ">
-          <div className="detail-image bg-[url('https://i.pinimg.com/564x/ce/63/7f/ce637f0f66f14dfd5a6a99625148a4c2.jpg')] h-[320px] w-[400px] bg-cover"></div>
+          <div className="detail-image  h-[320px] w-[400px] bg-cover">
+            {/* <img className="w-[100%] h-[100%] object-cover" src={process.env.REACT_APP_SERVER+ "/"+detail.path.replace("\\", "/")}/> */}
+            {
+            detail?.path ? <img className="w-[100%] h-[100%] object-cover" src={process.env.REACT_APP_SERVER+ "/"+detail.path.replace("\\", "/")}/>:
+            <Space className="h-[320px] w-[400px]">
+            <Skeleton.Image   active={active} style={{ width: '400px', height: '320px' }}  />
+          </Space>
+            }
+            
+          </div>
           <div className="bg-[white] detail-info pl-[20px] w-[260px] h-[100%] text-left">
             <h1 className="text-[30px] mb-[10px] text-[#07133b]">
               {detail.name}
@@ -85,7 +96,10 @@ const DetailDish = () => {
             <div className="flex items-center h-[30px] mb-[32px] text-[#ea6e12]">
               <DollarCircleOutlined />
               <h1 className="m-[0] pl-[4px] text-[#ea6e12]">{detail.price}</h1>
-              <PlusCircleOutlined className="hover:cursor-pointer ml-[80px] text-[20px]" onClick={addItem}/>
+              <PlusCircleOutlined
+                className="hover:cursor-pointer ml-[80px] text-[20px]"
+                onClick={addItem}
+              />
             </div>
             <p>{detail.disc}</p>
           </div>
