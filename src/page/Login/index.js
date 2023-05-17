@@ -14,10 +14,10 @@ const Login = () => {
   const handleSubmit = async (values) => {
     const str = "api/v1" + window.location.pathname;
     const response = await axios.post( str, values)
-    console.log( response);
+    // console.log( response);
   };
   const onChange = (e) => {
-    console.log(`checked = ${e.target.checked}`);
+    // console.log(`checked = ${e.target.checked}`);
   };
 
   const registerPage = () => {

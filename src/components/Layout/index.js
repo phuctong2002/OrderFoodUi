@@ -32,11 +32,12 @@ export default function DefaultLayout({ children }) {
     // console.log(e.target.value);
   };
   const onPressEnter = async (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     e.target.value = "";
   };
   const signOutHandle = ()=>{
     logoutUser();
+    navigate("/login");
   }
   const profileHandle = ()=>{
     navigate("/detail-profile");
@@ -105,7 +106,7 @@ export default function DefaultLayout({ children }) {
             />
             <p className="m-[0px]">Location</p>
           </div>
-          <div className="pl-[40px] leading-[60px] hover:cursor-default hover:bg-[#5ac3de] flex items-center mt-[24px] " onClick={ ()=> navigate("/admin")}>
+          <div className="pl-[40px] leading-[60px] hover:cursor-default hover:bg-[#5ac3de] flex items-center mt-[24px] " onClick={ ()=> navigate("/admin/order")}>
           <FontAwesomeIcon
               className="text-[20px] mr-[24px] w-[20px]"
               icon={faUserShield}

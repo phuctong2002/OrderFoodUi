@@ -19,3 +19,4 @@ export const SET_USER = 'SET_USER'
 
 export const DEL_ITEM = 'DEL_ITEM'
 export const ADD_ITEM = 'ADD_ITEM'
+export const DEL_ALL_ITEMS = 'DEL_ALL_ITEMS'

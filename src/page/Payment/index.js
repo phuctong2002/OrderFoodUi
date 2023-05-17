@@ -45,7 +45,7 @@ const tailFormItemLayout = {
 const Payment = () => {
   const [form] = Form.useForm();
   const onFinish = (values) => {
-    console.log("Received values of form: ", values);
+    // console.log("Received values of form: ", values);
   };
   const prefixSelector = (
     <Form.Item name="prefix" noStyle>

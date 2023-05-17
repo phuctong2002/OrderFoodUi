@@ -15,8 +15,10 @@ import {
   TreeSelect,
   Image,
 } from "antd";
-import { useEffect, useState } from "react";
+import axios from "axios";
+import { useEffect, useRef, useState } from "react";
 import { useAppContext } from "../context/appContext";
+import { useForm } from "antd/lib/form/Form";
 const props = {
   name: "file",
   action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
@@ -45,26 +47,43 @@ const normFile = (e) => {
 };
 
 const Profile = () => {
-  const [form] = Form.useForm();
-  const [componentDisabled, setComponentDisabled] = useState(true);
-  const { firstName, lastName, phone, email, address } = useAppContext();
-  console.log(firstName, lastName, phone, email, address);
+  const [myForm] = useForm();
+  
+  const [componentDisabled, setComponentDisabled] = useState(false);
+  const { firstName, lastName, phone, email, address, setUser } = useAppContext();
   const [command, setCommand] = useState("Edit Profile");
   const handle = () => {
     if (componentDisabled) {
       setCommand("Submit");
       setComponentDisabled(false);
     }
+    if( !componentDisabled){
+      const {ffirstName, flastName, faddress, femail,fphone} = myForm.getFieldsValue();
+      // console.log(firstName, lastName, address);
+      axios.put("/api/v1/user", {
+        oldEmail: email,
+        firstName: ffirstName, 
+        lastName: flastName,
+        phone: fphone,
+        email: femail,
+        address: faddress,
+      }).then( ( res)=>{
+        console.log(res.data.info);
+        setUser(res.data.info)
+      })
+    }
   };
   useEffect(() => {
-    form.setFieldValue({
-      firstName: firstName,
-      lastName: lastName,
-      address: address,
-      phone: phone,
-      email: email,
-    });
-  }, []);
+    myForm.setFieldsValue({
+      "ffirstName": firstName,
+      "flastName": lastName,
+      "fphone": phone,
+      "faddress": address,
+      "femail": email,
+    })
+    setComponentDisabled(true);
+  },[firstName]);
+  
   return (
     <div className="pt-[80px] w-[100%] h-[calc(100%_-_80px)] bg-[#eeeeee]">
       <div className="w-[100%]  flex items-center justify-center">
@@ -78,7 +97,8 @@ const Profile = () => {
           ) : null} */}
         </div>
         <div className="bg-[#ffff] rounded-[20px] h-[400px]  w-[800px] flex justify-center items-center">
-          <Form
+          <Form form={myForm}
+            
             labelCol={{
               span: 4,
             }}
@@ -92,24 +112,21 @@ const Profile = () => {
               maxWidth: 600,
             }}
           >
-            <Form.Item name="firstName" label="First Name">
+            <Form.Item name="ffirstName" label="First Name">
               <Input />
             </Form.Item>
-            <Form.Item label="Last Name" name="lastName">
+            <Form.Item label="Last Name" name="flastName">
               <Input />
             </Form.Item>
-            <Form.Item label="Address" name="address">
+            <Form.Item label="Address" name="faddress">
               <Input />
             </Form.Item>
-            <Form.Item label="Phone" name="phone">
+            <Form.Item label="Phone" name="fphone">
               <Input />
             </Form.Item>
-            <Form.Item label="Email" name="email">
+            <Form.Item label="Email" name="femail">
               <Input />
             </Form.Item>
-            {/* <Form.Item label="Birth">
-              <DatePicker className="w-[100%]" />
-            </Form.Item> */}
           </Form>
         </div>
       </div>

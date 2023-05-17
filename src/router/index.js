@@ -14,6 +14,8 @@ import AdminLayout from "../components/admin/Layout";
 import ProductManagement from "../page/admin/ProductManagement";
 import Cart from "../page/Cart";
 import Payment from "../page/Payment";
+import ConfirmOrder from "../page/ConfirmOrder";
+import OrderManagement from "../page/admin/OrderManagement";
 
 
 
@@ -32,11 +34,12 @@ const privatePath = [
   {path: "/", component: Home, layout: DefaultLayout },
   {path:"/detail-profile", component: Profile, layout: DefaultLayout },
   {path: "/cart", component: Cart, layout: DefaultLayout},
-  {path: "/payment-confirmation", component: Payment, layout: DefaultLayout}
+  {path: "/payment-confirmation", component: Payment, layout: DefaultLayout},
+  {path: "/confirm-order", component: ConfirmOrder, layout: DefaultLayout},
 ];
 
 const adminPath = [
-  {path: "/admin/order", component: Fragment, layout: DefaultLayout, subLayout: AdminLayout},
+  {path: "/admin/order", component: OrderManagement, layout: DefaultLayout, subLayout: AdminLayout},
   {path: "/admin/product-management", component: ProductManagement, layout: DefaultLayout, subLayout: AdminLayout},
   {path: "/admin", component: Fragment, layout: DefaultLayout, subLayout: AdminLayout},
 ]

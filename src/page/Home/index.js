@@ -28,7 +28,7 @@ import axios from "axios";
 const Home = () => {
   const {token, addItemToCart, cart} = useAppContext();
   cart.forEach( (item, index)=>{
-    console.log(index);
+    // console.log(index);
   })
   const navigate = useNavigate();
   const [category , setCategory] = useState([]);
@@ -37,7 +37,7 @@ const Home = () => {
     // console.log(e.target.value);
   };
   const onPressEnter = async (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
   
     e.target.value = "";
   };
@@ -49,7 +49,7 @@ const Home = () => {
     setDish(response.data.data);
   }
   const detailDish = (id)=>{
-    console.log(id)
+    // console.log(id)
     navigate("detail-dish/"+id);
   }
 
@@ -65,7 +65,7 @@ const Home = () => {
         const items = response.data.data.map( (item, index)=> item.name)
         setCategory( items);
       }catch(e){
-        console.log("Loi nhe anh em");
+        // console.log("Loi nhe anh em");
       }
 
     }

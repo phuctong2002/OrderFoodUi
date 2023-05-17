@@ -1,5 +1,6 @@
 import { Button, Space, Table, Col, Row } from "antd";
 import { useAppContext } from "../../context/appContext";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -45,8 +46,11 @@ const Cart = () => {
       id: item._id,
     };
   });
-  
-  console.log(cart);
+  const navigate = useNavigate();
+  const confirm = ()=>{
+    navigate("/confirm-order");
+  }
+  // console.log(cart);
   return (
     <div className=" pl-[30px] bg-[#F0F2F5] h-[630px] ">
       <Row>
@@ -69,8 +73,8 @@ const Cart = () => {
               <p>Tam tinh </p>
               <p>{total} VND</p>
             </div>
-            <Button className="w-[100%]" type="primary">
-              Order
+            <Button className="w-[100%]" type="primary" onClick={confirm}>
+              Confirm
             </Button>
           </div>
         </Col>

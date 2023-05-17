@@ -32,7 +32,7 @@ const SignUpPage = () => {
   //   return e.target.checked;
   // };
   const signUp = ()=>{
-    console.log( checkBox.current.state.checked);
+    // console.log( checkBox.current.state.checked);
     const firstNameValue = firstName.current.value;
     const lastNameValue = lastName.current.value;
     const emailValue = email.current.value;
@@ -49,8 +49,8 @@ const SignUpPage = () => {
           "phone": phoneValue,
           "password": passwordValue,
         }).then( (res)=>{
-          console.log( res.status);
-          console.log( res.data);
+          // console.log( res.status);
+          // console.log( res.data);
           setUser({
             firstName: res.data.firstName,
             lastName: res.data.lastName,

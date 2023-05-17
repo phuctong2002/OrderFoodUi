@@ -39,7 +39,7 @@ const DetailDish = () => {
   };
 
   const onPressEnter = async (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     /**write data into database */
     const docRef = await addDoc(collection(db, "review"), {
       user: firstName + lastName,
@@ -47,7 +47,7 @@ const DetailDish = () => {
       time: Date.now(),
       content: e.target.value,
     });
-    console.log("Id of Document : " + docRef.id);
+    // console.log("Id of Document : " + docRef.id);
     e.target.value = "";
   };
   useEffect(() => {

@@ -14,6 +14,7 @@ import {
   SET_USER,
   ADD_ITEM,
   DEL_ITEM,
+  DEL_ALL_ITEMS
 } from "./action";
 
 import { initialState } from "./appContext";
@@ -100,11 +101,11 @@ const reducer = (state, action) => {
       lastName: action.payload.lastName,
       phone: action.payload.phone,
       email: action.payload.email,
+      address: action.payload?.address,
       token: action.payload.token,
     }
   }
   if( action.type === ADD_ITEM){
-    console.log("them nay")
     return {
       ...state,
       cart: [...state.cart, action.payload]
@@ -116,23 +117,22 @@ const reducer = (state, action) => {
     newCart.forEach((item, index)=>{
       if( item._id === action.payload.id) pos = index
     })
-    console.log(pos);
     newCart.splice( pos, 1);
-    // const newCart = state.cart.map((item, index)=>{
-    //   if( item._id !== action.payload.id ){
-    //     return item;
-    //   }
-    // })
-    // return {
-    //   ...state,
-    //   cart: null,
-    // }
+    
     return {
       ...state,
       cart: newCart,
     }
+    
 
-
+  }
+  if( action.type === DEL_ALL_ITEMS){
+    const newCart = [...state.cart]
+    newCart.splice(0, newCart.length);
+    return {
+      ...state,
+      cart: newCart
+    }   
   }
 };
 

@@ -28,7 +28,7 @@ const ProductManagement = () => {
   const [form] = Form.useForm();
   const uploadRef = useRef();
   const change = (e) => {
-    console.log(e);
+    // console.log(e);
   };
   const [open, setOpen] = useState(false);
   const showDrawer = () => {
@@ -45,7 +45,7 @@ const ProductManagement = () => {
     formData.append("description", form.getFieldValue("description"));
     formData.append("category", form.getFieldValue("category")); 
     formData.append("price", form.getFieldValue("price"));
-    console.log( formData);
+    // console.log( formData);
 
     axios.post("/api/v1/product/upload-dish", formData,{
       headers: {
@@ -53,19 +53,19 @@ const ProductManagement = () => {
       }
     })
       .then( (response=>{
-        console.log(response);
+        // console.log(response);
       }))
     form.resetFields();
-    console.log("asdfhasldfjalsd", uploadRef.current);
+    // console.log("asdfhasldfjalsd", uploadRef.current);
 
     if( uploadRef.current){
       uploadRef.current.fileList = null;
-      console.log( uploadRef.current);
+      // console.log( uploadRef.current);
     }
   }
 
   const uploadImage = (e)=>{
-    console.log(e.file);
+    // console.log(e.file);
     setImage(e.file);
   }
 

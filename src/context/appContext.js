@@ -14,10 +14,12 @@ import {
   SET_USER,
   ADD_ITEM,
   DEL_ITEM,
+  DEL_ALL_ITEMS,
 } from "./action";
+import { useNavigate } from "react-router-dom";
 const token = localStorage.getItem("token");
 // const user = localStorage.getItem("user");
-console.log("Reload nhe anh em");
+// console.log("Reload nhe anh em");
 const initialState = {
   isLoading: false,
   showAlert: false,
@@ -30,7 +32,7 @@ const initialState = {
   phone: "",
   email: "",
   showSlidebar: false,
-  address: "Gia tri tam thoi nhe",
+  address: "",
   cart: []
   // tam thoi nay da
 };
@@ -93,52 +95,64 @@ const AppProvider = ({ children }) => {
     });
   }
   const addItemToCart = (item)=>{
-    console.log(item)
+    // console.log(item)
     dispatch({
       type: ADD_ITEM,
       payload: item,
     })
   }
   const deleteItemFromCart = (item)=>{
-    console.log(item);
+    // console.log(item);
     dispatch({
       type: DEL_ITEM,
       payload: item,
     })
   }
   useEffect( ()=>{
-    console.log("gia tri cua token : ", localStorage.getItem("token"));
+    // console.log("gia tri cua token : ", localStorage.getItem("token"));
     const token = localStorage.getItem("token");
-    const getData = async()=>{
-      const res = await axios.get("/api/v1/user/", {
-        headers: {
-          Authorization : "Bearer " + localStorage.getItem("token")
+    
+    if( token){
+      const getData = async()=>{
+        console.log("asdfasdfasd")
+        try{
+          const res = await axios.get("/api/v1/user/", {
+            headers: {
+              Authorization : "Bearer " + localStorage.getItem("token")
+            }
+          })
+          return res.data
+        }catch(e){
+
+          localStorage.removeItem("token");
         }
-      })
-      return res.data
-    }
-    if( localStorage.getItem("token")){
-      console.log("sdkfaskjdhfsjdfhj");
-      getData()
-        .then( res => {
-          console.log(res.data);
-          // set user in here nhe  anh em
-          const data = {...res.data, token: localStorage.getItem("token")}
-          setUser(data);
-        })
-        
+      }
+      if( localStorage.getItem("token")){
+        getData()
+          .then( res => {
+            const data = {...res.data, token: localStorage.getItem("token")}
+            console.log("Get info");
+            setUser(data);
+          })
+      }
     }
   },[dispatch]);
+  const deleteAllItemsInCart = async ()=>{
+    dispatch({
+      type: DEL_ALL_ITEMS,
+      payload: ""
+    })
+  }
   return (
     <AppContext.Provider
       value={{
         ...state,
-        // updateUser,
         logoutUser,
         toggleSidebar,
         setUser,
         addItemToCart,
         deleteItemFromCart,
+        deleteAllItemsInCart,
       }}
     >
       {children}

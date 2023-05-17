@@ -3,7 +3,7 @@ import { DollarCircleOutlined, PlusCircleOutlined } from "@ant-design/icons";
 import { useAppContext } from "../../context/appContext";
 import { useNavigate } from "react-router-dom";
 const DetailDish = (props) => {
-  console.log(process.env.REACT_APP_SERVER + "/" + props.item.path);
+  // console.log(process.env.REACT_APP_SERVER + "/" + props.item.path);
   const navigate = useNavigate();
   const{ addItemToCart} = useAppContext();
   return (
