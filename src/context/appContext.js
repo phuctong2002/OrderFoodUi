@@ -33,7 +33,8 @@ const initialState = {
   email: "",
   showSlidebar: false,
   address: "",
-  cart: []
+  cart: [],
+  isAdmin: false
   // tam thoi nay da
 };
 const AppContext = React.createContext();
@@ -114,7 +115,6 @@ const AppProvider = ({ children }) => {
     
     if( token){
       const getData = async()=>{
-        console.log("asdfasdfasd")
         try{
           const res = await axios.get("/api/v1/user/", {
             headers: {
@@ -123,7 +123,6 @@ const AppProvider = ({ children }) => {
           })
           return res.data
         }catch(e){
-
           localStorage.removeItem("token");
         }
       }

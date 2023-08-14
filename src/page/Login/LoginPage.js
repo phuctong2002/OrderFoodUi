@@ -50,7 +50,7 @@ const LoginPage = () => {
         <img src={logo} className="h-[120px] w-[200px] ml-[20px] cursor-pointer" onClick={goHome}></img>
         <div className="w-[360px]  mr-[auto] ml-[auto] ">
           <h1 className="text-center text-[36px] m-[0px]">Sign In</h1>
-          <p className="text-[#9c9e99]">Stay in to stay connected</p>
+          <p className="text-[#9c9e99]"></p>
           <div className="h-[80px]">
             <h2 className="text-left text-[#9c9e99] mt-[20px]">Email</h2>
             <input

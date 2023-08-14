@@ -7,7 +7,9 @@ const ItemCart = (props) => {
   return (
     <div className="item-cart h-[80px] flex items-center justify-between">
       <div className="h-[80px] flex items-center">
-        <div className="w-[60px] h-[60px] bg-[url('https://i.pinimg.com/564x/62/b8/a0/62b8a0824f347ba51fbbd817f8d19049.jpg')] bg-cover rounded-[30px]"></div>
+        <div className="w-[60px] h-[60px] bg-[url('https://i.pinimg.com/564x/62/b8/a0/62b8a0824f347ba51fbbd817f8d19049.jpg')] bg-cover rounded-[30px]">
+          <img className="w-[100%] h-[100%] object-cover rounded-[60px]" src={`${process.env.REACT_APP_SERVER + "/" + (props.item.path).replace("\\", "/")}`}/>
+        </div>
         <div className="m-[0px] pl-[20px]">
           <h1 className="m-[0px]">{props.item.name}</h1>
           {/* <p className="m-[0px]">x1</p> */}

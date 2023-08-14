@@ -26,6 +26,9 @@ const NewLayout = ({children}) => {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+
+
+
   return (
     <Layout
       style={{

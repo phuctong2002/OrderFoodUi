@@ -45,7 +45,6 @@ const Home = () => {
 
   const clickHandle = async(category)=>{
     const response = await axios.get("/api/v1/product/category/"+ category)
-    // const dishInCategory = response.data.data.map((item, index)=> item.name)
     setDish(response.data.data);
   }
   const detailDish = (id)=>{
@@ -62,8 +61,7 @@ const Home = () => {
             Authorization: "Bearer " + token
           }
         })
-        const items = response.data.data.map( (item, index)=> item.name)
-        setCategory( items);
+        setCategory( response.data.data);
       }catch(e){
         // console.log("Loi nhe anh em");
       }
@@ -100,7 +98,7 @@ const Home = () => {
                   </div>
                 </div>
                 <div className={`h-[140px]  w-[100%] overflow-x-auto whitespace-nowrap scrollbar-thumb ${style.nonescroll}`}>
-                  {category.map((item, index) => <ItemCategory name={item} key={index} img="sdfasdfa" onClick={()=> clickHandle(item)}/>)}
+                  {category.map((item, index) => <ItemCategory path={item.path} name={item.name} key={index} img="sdfasdfa" onClick={()=> clickHandle(item.name)}/>)}
                 </div>
                 <div className={`detail-dish h-[240px]  mt-[40px] overflow-x-auto whitespace-nowrap scrollbar-thumb ${style.nonescroll}`}>
                   {dish.map( (item, index)=> <DetailDish key={index} item={item} />)}

@@ -1,14 +1,11 @@
 import { Fragment } from "react";
 import DefaultLayout from "../components/Layout";
-import NewLayout from "../components/Layout/NewLayout";
 import Home from "../page/Home";
-import Login from "../page/Login/index";
 import LoginPage from "../page/Login/LoginPage";
 import SignUpPage from "../page/Register/SignUpPage";
 import Profile from "../components/Profile";
 import Alert from "../page/Alert";
 import Confirm from "../page/ResetPassword";
-import Navbar from "../components/Navbar";
 import DetailDish from "../page/DetailDishPage";
 import AdminLayout from "../components/admin/Layout";
 import ProductManagement from "../page/admin/ProductManagement";
@@ -16,6 +13,7 @@ import Cart from "../page/Cart";
 import Payment from "../page/Payment";
 import ConfirmOrder from "../page/ConfirmOrder";
 import OrderManagement from "../page/admin/OrderManagement";
+import Location from "../page/Location";
 
 
 
@@ -36,6 +34,10 @@ const privatePath = [
   {path: "/cart", component: Cart, layout: DefaultLayout},
   {path: "/payment-confirmation", component: Payment, layout: DefaultLayout},
   {path: "/confirm-order", component: ConfirmOrder, layout: DefaultLayout},
+  {path: "/location", component: Location, layout: DefaultLayout},
+  {path: "/news", component: Fragment, layout: DefaultLayout},
+  {path: "/review", component: Fragment, layout: DefaultLayout},
+  {path: "/sale", component: Fragment, layout: DefaultLayout},
 ];
 
 const adminPath = [

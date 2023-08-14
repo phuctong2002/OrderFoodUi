@@ -103,6 +103,7 @@ const reducer = (state, action) => {
       email: action.payload.email,
       address: action.payload?.address,
       token: action.payload.token,
+      isAdmin: action.payload.isAdmin,
     }
   }
   if( action.type === ADD_ITEM){

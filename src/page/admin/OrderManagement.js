@@ -23,9 +23,7 @@ const OrderManagement = () => {
             return <OrderItem key={index} name={item.name} address={item.address} total={item.total} accept={item.accept} id={item._id}/>
         })
     }
-    {/* <OrderItem/>
-    <OrderItem/>
-    <OrderItem/> */}
+    
   </div>;
 };
 

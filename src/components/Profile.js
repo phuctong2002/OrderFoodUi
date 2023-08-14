@@ -89,12 +89,6 @@ const Profile = () => {
       <div className="w-[100%]  flex items-center justify-center">
         <div className="bg-[#ffff] h-[400px] flex items-center  w-[300px] rounded-[20px] mr-[20px]">
           <Image src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png" />
-          {/* <h1 className="text-[28px]">{firstName + lastName}</h1> */}
-          {/* {edit ? (
-            <Upload {...props}>
-              <Button icon={<UploadOutlined />}>Upload</Button>
-            </Upload>
-          ) : null} */}
         </div>
         <div className="bg-[#ffff] rounded-[20px] h-[400px]  w-[800px] flex justify-center items-center">
           <Form form={myForm}
