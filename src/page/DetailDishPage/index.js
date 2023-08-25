@@ -136,7 +136,7 @@ const DetailDish = () => {
           </div>
         </div>
       </div>
-      <div className="w-[calc(100%_-_900px)] bg-[blue] h-[100%]"></div>
+      <div className="w-[calc(100%_-_900px)]  h-[100%]"></div>
     </div>
   );
 };
