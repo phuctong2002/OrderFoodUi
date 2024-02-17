@@ -15,7 +15,10 @@ pipeline {
             steps{
                 echo "Building image..."
                 script{
-                    docker.build('orderfoodui')
+                    docker.withRegistry('https://index.docker.io/v1/', '473608fc-d033-4a66-a637-c9db9e39e3ae') {
+                        // Đẩy image lên Docker Hub
+                        docker.image('orderfoodui').push('latest')
+                    }
                 }
             }
         }
