@@ -20,8 +20,10 @@ pipeline {
         }
         stage('pull image') {
             steps {
-                sshagent( credentials:['ssh-credential-id']){
+                
+                script{
                     bat "ssh phuctong@192.168.200.136 'docker pull vanphuc15092002/orderfood:latest'"
+                    
                 }
             }
         }
