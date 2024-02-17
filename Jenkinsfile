@@ -15,7 +15,7 @@ pipeline {
             steps{
                 echo "Building image..."
                 script{
-                    docker.withRegistry('https://index.docker.io/v1/', '473608fc-d033-4a66-a637-c9db9e39e3ae') {
+                    withDockerRegistry([ credentialsId: "473608fc-d033-4a66-a637-c9db9e39e3ae", url: "" ]) {
                         // Đẩy image lên Docker Hub
                         docker.image('orderfoodui').push('latest')
                     }
