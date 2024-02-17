@@ -17,7 +17,7 @@ pipeline {
                 script{
                     bat "docker build -t orderfood:latest . \
                     && docker tag orderfood:latest vanphuc15092002/orderfood:latest \
-                    && echo vanphuc15092002 && docker login -u vanphuc15092002 --password-stdin \
+                    && docker login -u vanphuc15092002 -p vanphuc15092002 \
                     && docker push vanphuc15092002/orderfood:latest"
                     
                 }
