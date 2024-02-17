@@ -15,10 +15,11 @@ pipeline {
             steps{
                 echo "Building image..."
                 script{
-                    docker.withRegistry( '', '473608fc-d033-4a66-a637-c9db9e39e3ae' ){
-                        // Đẩy image lên Docker Hub
-                        docker.image('orderfoodui').push('latest')
-                    }
+                    sh "docker build -t orderfood
+                    && docker tag orderfood:latest vanphuc15092002/orderfood:latest
+                    && echo vanphuc15092002 && docker login -u vanphuc15092002 --password-stdin 
+                    && docker push vanphuc15092002/orderfood:latest"
+                    
                 }
             }
         }
