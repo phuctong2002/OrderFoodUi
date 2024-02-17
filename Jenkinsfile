@@ -14,6 +14,9 @@ pipeline {
         stage("build image"){
             steps{
                 echo "Building image..."
+                script{
+                    docker.build('orderfoodui')
+                }
             }
         }
         
