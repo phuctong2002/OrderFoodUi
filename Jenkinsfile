@@ -8,9 +8,16 @@ pipeline {
     stages {
         stage('test') {
             steps {
-                echo "Testing"
+                echo "Testing..."
             }
         }
+        stage("build image"){
+            steps{
+                echo "Building image..."
+            }
+        }
+        
     }
+    
 
 }
