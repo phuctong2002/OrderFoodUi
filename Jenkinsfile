@@ -21,7 +21,7 @@ pipeline {
         stage('pull image and run') {
             steps {
                 script{
-                    def deploying - "#!/bin/bash\n" + 
+                    def deploying = "#!/bin/bash\n" + 
                     "docker rm -f vanphuc15092002/orderfood:latest \n" + 
                     "docker pull vanphuc15092002/orderfood:latest \n"  + 
                     "docker run --name orderfoodcontainer -dp 3000:3000 vanphuc15092002/orderfood:latest"
