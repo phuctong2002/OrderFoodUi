@@ -28,7 +28,7 @@ pipeline {
                     
                     sshagent( ['ssh-credential-id']){
                         ssh """
-                            ssh -o StrictHostKeyChecking-no -i ssh-credential-id phuctong@192.168.200.136 " echo \\\"${deploying}\\\" > deploy.sh && chmod +x deploy.sh && ./deploy.sh
+                            ssh -o StrictHostKeyChecking=no -l phuctong 192.168.200.136 " echo \\\"${deploying}\\\" > deploy.sh && chmod +x deploy.sh && ./deploy.sh
                         """
                     }
 
