@@ -26,11 +26,7 @@ pipeline {
                     "docker pull vanphuc15092002/orderfood:latest \n"  + 
                     "docker run --name orderfoodcontainer -dp 3000:3000 vanphuc15092002/orderfood:latest"
                     
-                    sshagent( ['ssh-credential-id']){
-                        ssh """
-                            ssh -o StrictHostKeyChecking=no -l phuctong 192.168.200.136 " echo \\\"${deploying}\\\" > deploy.sh && chmod +x deploy.sh && ./deploy.sh
-                        """
-                    }
+                    
 
                 }
             }
